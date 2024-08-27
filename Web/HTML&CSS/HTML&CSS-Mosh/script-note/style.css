@@ -1,0 +1,154 @@
+/****************************** 1_3_CSS Basics *****************/
+/****************************** 5- Relational Selectors ********/
+/* Relational Selectors: 1 & 2 */
+/* #products p {
+    color: orange;
+} */
+/* only the direct child of the products section: only 1 */
+#products > p {
+  color: orange;
+}
+/* direct sibling of the products section: 3 */
+/* #products + p {
+    color: orange;
+} */
+/* all paragraph elements that come after the product: 3 & 4 */
+/* #products ~ p {
+    color: orange;
+} */
+
+/****************************** 6- Pseudo-class Selectors ********/
+articlle :first-child {
+  font-size: 140%;
+  font-style: italic;
+}
+
+.box::before {
+  content: "Hello";
+}
+.box {
+  /* width: 100px;
+  height: 100px; */
+  background-color: gold;
+  /* padding: 20px; */
+  border: 10px solid orange;
+  /* box-sizing: border-box; */
+}
+
+.test::before {
+  content: "Hello";
+}
+
+/****************************** 7-Floating Elements ********/
+.avatar {
+  width: 5rem;
+  height: 5rem;
+  background-color: gold;
+  /* 只写以上这些，paragraph在黄⾊box下⾯，因为p是block的，会另起⼀⾏ */
+  /*
+  float: left; will float avartar element to the left side of its
+ container(tweet)
+  作为结果，all the subsequent elements will flow around it
+  如果paragraph⾜够⻓，你会发现，它会绕着黄⾊的box（avatar）
+  */
+  float: left;
+  margin-right: 10px;
+}
+.second-p {
+  clear: both;
+}
+.tweet {
+  border: 1px solid red;
+  overflow: hidden;
+}
+.clear {
+  clear: both;
+}
+
+/****************************** 8-FlexBox ********/
+/* .container {
+  border: 3px solid grey;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+.flex-box {
+  width: 5%;
+  height: 5rem;
+  background-color: gold;
+  margin: 1%;
+}
+.box-one {
+  align-self: flex-end;
+  margin-right: 80%;
+  width: 5%;
+} */
+
+.container {
+  border: 3px solid grey;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 90vh;
+}
+.flex-box {
+  width: 5rem;
+  height: 5rem;
+  background-color: gold;
+  margin: 1rem;
+}
+.box-one {
+  align-self: flex-end;
+}
+
+.center-container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+/****************************** 3-3D Transformations ********/
+.D-container {
+  margin-left: 50%;
+}
+
+.D-box {
+  width: 300px;
+  height: 300px;
+  background: gold;
+}
+
+.D-container:hover {
+  transform: perspective(200px) rotateY(45deg);
+  transform-origin: 0 50%;
+}
+/****************************** 5-Animations ********/
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.3);
+  }
+
+  50% {
+    transform: rotate(45deg);
+    background: tomato;
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.Animations-box {
+  width: 100px;
+  height: 100px;
+  background: gold;
+  animation-name: pop;
+  animation-duration: 4s;
+}

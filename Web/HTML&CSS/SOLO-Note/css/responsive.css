@@ -1,0 +1,490 @@
+/* =========================================
+                Mobile Menu
+============================================ */
+
+.navbar-header {
+  position: relative;
+}
+
+#mobile-nav-open-btn {
+  font-size: 30px;
+  color: #f4c613;
+  cursor: pointer;
+  z-index: 2;
+  position: absolute;
+  right: 0;
+  top: 6px;
+  /* hide mobile nav open btn */
+  /* 大屏幕不显示，小屏幕显示（这个就是在 responsive.css extra small 中设置）*/
+  display: none;
+}
+
+#mobile-nav {
+  /* by default, mobile nav will be hidden with height 0% */
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-transition: all 300ms linear;
+  transition: all 300ms linear;
+  overflow-y: hidden;
+}
+
+#mobile-nav-close-btn {
+  font-family: "Raleway", sans-serif;
+  font-size: 70px;
+  color: #212226;
+  font-weight: 400;
+  cursor: pointer;
+  position: absolute;
+  top: -9px;
+  right: 13px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#mobile-nav-content {
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
+  position: relative;
+  top: 10%;
+}
+
+#mobile-nav ul li {
+  margin-bottom: 20px;
+}
+
+#mobile-nav a {
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+  color: #212226;
+  font-weight: 400;
+  text-transform: uppercase;
+  display: inline;
+  /* 
+    transition: 0.3s 它会使该元素（#mobile-nav a）的所有 ALL 属性在0.3秒内平滑地过渡到新的值，从而创建一种平滑的动画效果
+    比如说点击 link 后，link会变色，
+    如果没有transition，会立即变色
+    如果transition为3s，我们会看不到变色，因为3秒后才会变色，3s后我们已经跳转到被点击的 section，而且 mobile nav 已经收起，已经看不到这个迟来的变色了
+  */
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#mobile-nav a:hover,
+#mobile-nav a:focus,
+#mobile-nav-close-btn:hover,
+#mobile-nav-close-btn:focus {
+  color: #f4c613;
+  background: none;
+}
+
+/* Mobile nav scroll spy active state */
+
+.white-nav-top #mobile-nav ul.nav > li.active > a {
+  color: #f4c613;
+  font-weight: 500;
+}
+
+/*==================================================
+			Bootstrap 3 Media Queries        
+==================================================*/
+
+/* Large Devices (Desktops & Laptops) */
+
+@media (min-width: 1200px) and (max-width: 1299px) {
+  /* Navigation */
+  .site-nav-wrapper {
+    padding: 0 20px;
+  }
+}
+
+/* Medium Devices (Landscape Tablets & Medium Desktops) */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* Navigation */
+  .site-nav-wrapper {
+    padding: 0;
+  }
+  /* Generic */
+  .vertical-heading h2 {
+    font-size: 29px;
+  }
+  /* Services 02 */
+  #services-tabs .tab-bg {
+    padding: 16px 30px;
+    /* 
+      正常定义的最小高度是481px（最小高度481px这是因为，原本右边比左边短一截），那么右边就会比左边长出一块，
+      所以response这里修改右边的min-height，让它跟左边同高
+    */
+    min-height: 300px;
+  }
+  .service-tab p {
+    line-height: 20px;
+  }
+}
+
+/* Small Devices (Portrait Tablets & Small Desktops) */
+
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Navigation */
+  .site-nav-wrapper {
+    padding: 0;
+  }
+  /* Home */
+  #home-heading h1 {
+    font-size: 41px;
+  }
+  #home-text p {
+    font-size: 13px;
+  }
+  /* Generic */
+  .btn-general {
+    padding: 8px 35px 8px 35px;
+    font-size: 10px;
+  }
+  /* Generic */
+  .vertical-heading h2 {
+    font-size: 29px;
+  }
+  /* Tech Statement */
+  #tech-statement h3 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  /* Services 02 */
+  /* 
+    这里依然有一个怪display：link不是一个接着一个的。
+    当展示第一个div的时候，第一个link在top，其他三个link在div的下面。
+    当展示第二个div的时候，第一个link和第二个link在top，其他两个link在div的下面。
+
+    small device: 不只是类名不一样，最重要的是，在小device的时候，response tab会在相应 div 中添加新的 link，小device的link，使用的是新添加的link，而不是原本的link
+    r-tabs-accordion-title r-tabs-state-active
+    r-tabs-accordion-title
+
+    normal size
+    r-tabs-tab r-tabs-state-active
+    r-tabs-tab r-tabs-state-default 
+
+    text-align: center;
+    margin-bottom: 10px;
+    上面两个是给 link 外面的 div 的
+    再下面一个 a ，是给 div 里面的 link 的
+  */
+  .r-tabs-accordion-title {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .r-tabs-accordion-title a {
+    font-family: "Raleway", sans-serif;
+    font-size: 13px;
+    color: #212226;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 0;
+    text-decoration: none;
+  }
+  /* Tab active state */
+  .r-tabs-accordion-title.r-tabs-state-active a {
+    color: #f4c613;
+    font-weight: 700;
+    border-bottom: 3px solid #f4c613;
+    padding-bottom: 5px;
+    -webkit-transition: border-color 300ms linear;
+    transition: border-color 300ms linear;
+  }
+  /* Pricing */
+  .pricing-table .price h2 {
+    margin: 0 0 0 6px;
+    font-size: 35px;
+  }
+  /* Stats */
+  .stats-item p {
+    line-height: 18px;
+  }
+  /* Blog */
+  .blog-post .post-meta p {
+    line-height: 14px;
+  }
+  /* Contact */
+  ul.office-details li {
+    margin-right: 15px;
+  }
+  ul.office-details li i {
+    width: 25px;
+  }
+}
+
+/* 
+  没有解释为什么对于小 device，我们只需要 max-width， 不需要 min-width
+  gpt的解释：
+  对于小设备，你可能更关心设备的最大宽度，因此只需要定义 max-width 即可。而对于较大设备，你可能会定义 min-width 和 max-width，以便在一个特定的宽度范围内应用不同的样式或布局。
+*/
+/* Extra Small Devices (Landscape Phones & Portrait Tablets) */
+
+@media (max-width: 767px) {
+  /* Navigaiton */
+  .navbar {
+    padding: 20px 0;
+  }
+  .site-nav-wrapper,
+  .white-nav-top {
+    padding: 0;
+  }
+  /* show mobile nav open btn */
+  #mobile-nav-open-btn {
+    display: block;
+  }
+  /* Home */
+  #home-heading h1 {
+    font-size: 22px;
+  }
+  #home-text p {
+    font-size: 13px;
+    line-height: 18px;
+    margin: 8px 2px 30px 2px;
+  }
+  /* Generic */
+  .btn-general {
+    padding: 8px 25px 6px 25px;
+    font-size: 10px;
+  }
+  /* About 01 */
+  /* Large Content Box */
+  .content-box-lg {
+    padding: 90px 0;
+  }
+  /* Vertical heading */
+  .vertical-heading {
+    text-align: center;
+  }
+  .vertical-heading h5 {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    display: block;
+    position: static;
+    margin-bottom: 15px;
+  }
+  .vertical-heading h2 {
+    font-size: 29px;
+    line-height: normal;
+    margin: 0;
+  }
+  #about-left {
+    margin-bottom: 50px;
+  }
+  #about-right {
+    text-align: center;
+  }
+  /* About 02 */
+  /* Medium Content Box */
+  .content-box-md {
+    padding: 80px 0;
+  }
+  .about-item {
+    padding: 55px 30px;
+    margin-bottom: 35px;
+  }
+  .about-item i {
+    font-size: 30px;
+  }
+  .about-item h3 {
+    font-size: 18px;
+  }
+  /* Team */
+  #team-left .vertical-heading {
+    min-height: 130px;
+  }
+  .skill h4 {
+    font-size: 14px;
+    line-height: 35px;
+  }
+  /* Tech Statement */
+  #tech-statement h3 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  /* Services 01 */
+  /* Horizontal heading */
+  .horizontal-heading {
+    margin-bottom: 40px;
+  }
+  .horizontal-heading h2 {
+    font-size: 30px;
+  }
+  #services-01 img {
+    margin: 35px 0;
+  }
+  .service,
+  .service .icon {
+    text-align: center;
+  }
+  .service h4 {
+    font-size: 18px;
+  }
+  /* Services 02 */
+  .r-tabs-accordion-title {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .r-tabs-accordion-title a {
+    font-family: "Raleway", sans-serif;
+    font-size: 13px;
+    color: #212226;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 0;
+    text-decoration: none;
+  }
+  /* Tab active state */
+  .r-tabs-accordion-title.r-tabs-state-active a {
+    color: #f4c613;
+    font-weight: 700;
+    border-bottom: 3px solid #f4c613;
+    padding-bottom: 5px;
+    -webkit-transition: border-color 300ms linear;
+    transition: border-color 300ms linear;
+  }
+  #services-tabs .tab-bg {
+    text-align: center;
+    padding: 40px 30px;
+  }
+  #services-tabs h2 {
+    font-size: 40px;
+  }
+  #services-tabs h3 {
+    font-size: 28px;
+  }
+  /* Portfolio */
+  #portfolio {
+    padding-bottom: 0;
+  }
+  #isotope-filters button {
+    padding-right: 15px;
+  }
+  /* Testimonials */
+  #testimonials {
+    padding-top: 45px;
+  }
+  #testimonial-slider {
+    top: 0;
+  }
+  #testimonials .vertical-heading {
+    padding: 0;
+  }
+  .testimonial .row {
+    margin: 0;
+  }
+  .testimonial h3 {
+    font-size: 20px;
+  }
+  .testimonial .stars {
+    font-size: 16px;
+  }
+  .author img {
+    /* 
+      .owl-carousel .owl-item img { width: 100% }
+      他们的权重一样（都是类 + 元素），
+      而且owl比style.css的优先级更高（在chrome中可以看到这一点，可能是因为 script.js 中的方法应用，我没有查到owl-item类名的使用，但是它被加载了，说明script.js中.owlCarousel() 方法，会加载一些类名给被选择的元素。可能因此提高了.owl-carousel .owl-item 的优先级），
+      所以需要!important
+    */
+    width: 80px !important;
+  }
+  /* Pricing */
+  .pricing-table {
+    margin-bottom: 30px;
+  }
+  .pricing-table .price h2 {
+    font-size: 28px;
+    margin: 0 0 0 16px;
+  }
+  /* Stats */
+  .stats-item {
+    margin-bottom: 20px;
+    padding: 25px 5px;
+  }
+  .stats-item i {
+    font-size: 30px;
+  }
+  .stats-item h3 {
+    font-size: 24px;
+  }
+  /* Blog */
+  #blog-left {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .blog-post {
+    margin-bottom: 25px;
+  }
+  /* Contact */
+  #contact-left {
+    text-align: center;
+  }
+  .office {
+    margin-bottom: 40px;
+  }
+  ul.office-details li {
+    display: block;
+    margin-top: 25px;
+  }
+  ul.office-details li i {
+    width: auto;
+    display: block;
+    margin-bottom: 3px;
+  }
+  ul.social-list {
+    margin-bottom: 40px;
+  }
+}
+
+/* Extra Small Devices (Portrait Phones & Smaller Devices) */
+
+@media (max-width: 480px) {
+  /* Home */
+  #home-heading h1 {
+    font-size: 18px;
+  }
+  #home-text p {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 8px 10px 25px 10px;
+  }
+  /* Generic */
+  .vertical-heading h2 {
+    font-size: 22px;
+  }
+  /* Portfolio */
+  #isotope-filters {
+    text-align: center;
+  }
+  #isotope-filters button {
+    font-size: 10px;
+    padding-right: 14px;
+  }
+  /* Testimonials */
+  .testimonial h3 {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .testimonial .stars {
+    font-size: 13px;
+  }
+}
+
+/* Extra Small Devices (Portrait Phones & Smaller Devices) */
+
+@media (max-width: 320px) {
+  /* Testimonials */
+  .testimonial h3 {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .testimonial .stars {
+    font-size: 10px;
+  }
+}
