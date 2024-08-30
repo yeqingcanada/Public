@@ -207,7 +207,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'core.User'
 
-CELERY_BROKER_URL = 'rediss://:cY9cbxFwFp1RP5Eb1NtpBqTzobaYHUUtJAzCaA5OAvg=@Miebach-Capacity-Planner.redis.cache.windows.net:6380/2'
+CELERY_BROKER_URL = 'rediss://password=@redis_server_address.redis.cache.windows.net:6380/2'
 
 CELERY_BEAT_SCHEDULE = {
     'scheduled_task': {
